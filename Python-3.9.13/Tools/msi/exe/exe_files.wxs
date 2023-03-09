@@ -32,6 +32,11 @@
             <Component Id="vcruntime140.dll" Directory="InstallDirectory" Guid="*">
                 <File Name="vcruntime140.dll" Source="vcruntime140.dll" KeyPath="yes" />
             </Component>
+            
+            <Component Id="Win7Patch" Directory="InstallDirectory" Guid="*">
+                <File Name="api-ms-win-core-path-l1-1-0.dll" Source="api-ms-win-core-path-l1-1-0.dll" KeyPath="yes" />
+            </Component>
+            
 <?ifdef Include_Vcruntime140_1_dll ?>
             <Component Id="vcruntime140_1.dll" Directory="InstallDirectory" Guid="*">
                 <File Name="vcruntime140_1.dll" Source="vcruntime140_1.dll" KeyPath="yes" />

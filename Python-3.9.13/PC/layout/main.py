@@ -47,7 +47,7 @@ TCLTK_FILES_ONLY = FileNameSet("turtle.py")
 
 VENV_DIRS_ONLY = FileNameSet("venv", "ensurepip")
 
-EXCLUDE_FROM_PYDS = FileStemSet("python*", "pyshellext", "vcruntime*")
+EXCLUDE_FROM_PYDS = FileStemSet("python*", "pyshellext", "vcruntime*", "api-ms-*")
 EXCLUDE_FROM_LIB = FileNameSet("*.pyc", "__pycache__", "*.pickle")
 EXCLUDE_FROM_PACKAGED_LIB = FileNameSet("readme.txt")
 EXCLUDE_FROM_COMPILE = FileNameSet("badsyntax_*", "bad_*")
@@ -179,6 +179,12 @@ def get_layout(ns):
         yield dest, src
     if not found_any:
         log_error("Failed to locate vcruntime DLL in the build.")
+
+    for dest, src in rglob(ns.build, "api-ms-win-core-path-l1-1-0.dll"):
+        yield dest, src
+        break
+    else:
+        log_error("Failed to locate api-ms-win-core-path-l1-1-0.dll in the build.")
 
     yield "LICENSE.txt", ns.build / "LICENSE.txt"
 

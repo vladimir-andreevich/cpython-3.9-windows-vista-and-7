@@ -31,6 +31,7 @@
     <ItemGroup>
       <_PythonRuntimeExe Include="$(PythonHome)\python*.dll" />
       <_PythonRuntimeExe Include="$(PythonHome)\vcruntime140.dll" />
+      <_PythonRuntimeExe Include="$(PythonHome)\api-ms-win-core-path-l1-1-0.dll" />
       <_PythonRuntimeExe Include="$(PythonHome)\python*.exe" Condition="$(IncludePythonExe) == 'true'" />
       <_PythonRuntimeExe>
         <Link>%(Filename)%(Extension)</Link>

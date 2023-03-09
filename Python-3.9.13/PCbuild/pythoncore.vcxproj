@@ -555,6 +555,19 @@
     <Warning Text="A copy of vcruntime140.dll is also required" Condition="!$(VCToolsRedistVersion.StartsWith(`14.`))" />
     <Copy SourceFiles="%(VCRuntimeDLL.FullPath)" DestinationFolder="$(OutDir)" />
   </Target>
+  
+  <Target Name="_CopyWin7Patch_x86" AfterTargets="Build" DependsOnTargets="_CopyVCRuntime" Condition="$(Platform) == 'Win32'">
+    <Copy SourceFiles="$(PATCHDIR)\x86\api-ms-win-core-path-l1-1-0.dll" DestinationFolder="$(OutDir)" />
+  </Target>
+  
+  <Target Name="_CopyWin7Patch_x64" AfterTargets="Build" DependsOnTargets="_CopyVCRuntime" Condition="$(Platform) == 'x64'">
+    <Copy SourceFiles="$(PATCHDIR)\x64\api-ms-win-core-path-l1-1-0.dll" DestinationFolder="$(OutDir)" />
+  </Target>
+  
+  <Target Name="_CleanWin7Patch" AfterTargets="Clean">
+    <Delete Files="$(OutDir)api-ms-win-core-path-l1-1-0.dll" />
+  </Target>
+  
   <Target Name="_CleanVCRuntime" AfterTargets="Clean">
     <Delete Files="@(VCRuntimeDLL->'$(OutDir)%(Filename)%(Extension)')" />
   </Target>
